@@ -1,0 +1,11 @@
+FROM node:14
+
+COPY . ./server
+
+WORKDIR /server
+
+RUN npm install 
+
+CMD ["node", "server1.js" ]
+
+EXPOSE 4567
