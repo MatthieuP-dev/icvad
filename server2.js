@@ -1,7 +1,9 @@
 const express = require('express')
 const axios = require('axios')
+const { response } = require('express')
 const app = express()
 const port = 5372
+let port1
 
 app.get('/', (req, res)=>{
     res.status(200).json({
@@ -10,7 +12,7 @@ app.get('/', (req, res)=>{
     })
 
     setTimeout(function(){
-        axios.get('http://localhost:4567/')
+        axios.get('http://localhost:'+port1)
         .then(response => {
             console.log(response.data)
         })
@@ -22,6 +24,11 @@ app.get('/', (req, res)=>{
 })
 
 
+
 app.listen(port, () => {
-    console.log('Exemple Ok')
+    axios.get('http://localhost:8080/s2')
+    .then(response=>{
+        port1 = response.data.p2;
+    })
+
 })
